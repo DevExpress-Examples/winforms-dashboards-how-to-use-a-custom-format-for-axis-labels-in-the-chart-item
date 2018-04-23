@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource ComponentName="dashboardSqlDataSource1">
+      <Name>SQL Data Source 1</Name>
+      <Connection Name="nwind" ProviderKey="Access97">
+        <Parameters>
+          <Parameter Name="database" Value="..\..\Data\nwind.mdb" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+          <Parameter Name="userid" Value="" />
+          <Parameter Name="password" Value="" />
+        </Parameters>
+      </Connection>
+      <Query Type="SelectQuery" Name="CustomerReports">
+        <Tables>
+          <Table Name="CustomerReports" X="30" Y="30" Width="125" Height="0" />
+        </Tables>
+        <Columns>
+          <Column Table="CustomerReports" Name="ProductName" />
+          <Column Table="CustomerReports" Name="CompanyName" />
+          <Column Table="CustomerReports" Name="OrderDate" />
+          <Column Table="CustomerReports" Name="ProductAmount" />
+        </Columns>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="CustomerReports">
+            <Field Name="ProductName" Type="String" />
+            <Field Name="CompanyName" Type="String" />
+            <Field Name="OrderDate" Type="DateTime" />
+            <Field Name="ProductAmount" Type="Decimal" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="Calculated Field 1" Expression="GetYear([OrderDate])" DataType="Auto" DataMember="CustomerReports" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Chart ComponentName="chartDashboardItem1" Name="1. Chart with the Currency Format (Y Axis)" DataSource="dashboardSqlDataSource1" DataMember="CustomerReports">
+      <DataItems>
+        <Measure DataMember="ProductAmount" DefaultId="DataItem0" />
+        <Dimension DataMember="OrderDate" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Chart ComponentName="chartDashboardItem2" Name="2. Chart with the Number Format and the Ones Unit (Y Axis)" DataSource="dashboardSqlDataSource1" DataMember="CustomerReports">
+      <DataItems>
+        <Measure DataMember="ProductName" SummaryType="Count" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Unit="Ones" />
+        </Measure>
+        <Dimension DataMember="OrderDate" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Chart ComponentName="chartDashboardItem3" Name="3. Chart with Whole Number Format (X Axis)" DataSource="dashboardSqlDataSource1" DataMember="CustomerReports" FilterString="[DataItem0] &lt; 1000.0m">
+      <DataItems>
+        <Measure DataMember="ProductAmount" SummaryType="Count" DefaultId="DataItem1" />
+        <Dimension DataMember="ProductAmount" TopNCount="40" TopNMeasure="DataItem1" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" />
+        </Dimension>
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical">
+      <LayoutGroup Weight="50.091743119266056">
+        <LayoutItem DashboardItem="chartDashboardItem1" Weight="50" />
+        <LayoutItem DashboardItem="chartDashboardItem2" Weight="50" />
+      </LayoutGroup>
+      <LayoutItem DashboardItem="chartDashboardItem4" Weight="49.908256880733944" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>
