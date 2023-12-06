@@ -4,7 +4,7 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
 
-# Dashboard for WinForms - How to use a custom format for axis labels in the Chart Item
+# Dashboard for WinForms - How to Use a Custom Format for Axis Labels in the Chart Item
 
 **UPDATE:** Starting with version **18.2**, we introduced the capability to format any Numeric or Date-Time Value. So, you can set formats demonstrated in this example via the Dashboard Designer's UI using the following settings without writing additional code:  
 [Numeric Format X-Axis Settings](https://docs.devexpress.com/Dashboard/15155/create-dashboards/create-dashboards-in-the-winforms-designer/designing-dashboard-items/chart/axes/x-axis#numeric-format-x-axis-settings)  
@@ -29,19 +29,15 @@ The following three most frequently asked scenarios are represented in this exam
 ![screenshot](/media/5fb249b9-5c53-44f8-ad06-5cf65a5fecf9.png)
 
 ```cs
-        private void dashboardDesigner1_DashboardItemControlCreated(object sender, DevExpress.DashboardWin.DashboardItemControlEventArgs e)
-        {
-            ...
-            e.ChartControl.CustomDrawAxisLabel += ChartControl_CustomDrawAxisLabel1;
-            ...
-        }
-         private void ChartControl_CustomDrawAxisLabel1(object sender, DevExpress.XtraCharts.CustomDrawAxisLabelEventArgs e)
-        {
-            if (e.Item.Axis is SecondaryAxisY)
-                e.Item.Text = "$" + e.Item.Text;
-        }
- 
-
+private void dashboardDesigner1_DashboardItemControlCreated(object sender, DevExpress.DashboardWin.DashboardItemControlEventArgs e) {
+    ...
+    e.ChartControl.CustomDrawAxisLabel += ChartControl_CustomDrawAxisLabel1;
+    ...
+}
+ private void ChartControl_CustomDrawAxisLabel1(object sender, DevExpress.XtraCharts.CustomDrawAxisLabelEventArgs e) {
+    if (e.Item.Axis is SecondaryAxisY)
+        e.Item.Text = "$" + e.Item.Text;
+}
 ```
 
 **2. Use the ones unit format**
@@ -50,17 +46,15 @@ The following three most frequently asked scenarios are represented in this exam
 
 
 ```cs
-        private void dashboardDesigner1_DashboardItemControlCreated(object sender, DevExpress.DashboardWin.DashboardItemControlEventArgs e)
-        {
-            ...
-            e.ChartControl.CustomDrawAxisLabel += ChartControl_CustomDrawAxisLabel2;
-            ...
-        }
-         private void ChartControl_CustomDrawAxisLabel2(object sender, DevExpress.XtraCharts.CustomDrawAxisLabelEventArgs e)
-        {
-            if (e.Item.Axis is SecondaryAxisY)
-                e.Item.Text = ((double)e.Item.AxisValue).ToString("n0");
-        }
+private void dashboardDesigner1_DashboardItemControlCreated(object sender, DevExpress.DashboardWin.DashboardItemControlEventArgs e) {
+    ...
+    e.ChartControl.CustomDrawAxisLabel += ChartControl_CustomDrawAxisLabel2;
+    ...
+}
+ private void ChartControl_CustomDrawAxisLabel2(object sender, DevExpress.XtraCharts.CustomDrawAxisLabelEventArgs e) {
+    if (e.Item.Axis is SecondaryAxisY)
+        e.Item.Text = ((double)e.Item.AxisValue).ToString("n0");
+}
 
 ```
 
@@ -69,17 +63,15 @@ The following three most frequently asked scenarios are represented in this exam
 ![screenshot](/media/df327637-cb42-444e-91eb-4d7a56c42ce9.png)
 
 ```cs
-private void dashboardDesigner1_DashboardItemControlCreated(object sender, DevExpress.DashboardWin.DashboardItemControlEventArgs e)
-        {
-            ...
-            e.ChartControl.CustomDrawAxisLabel += ChartControl_CustomDrawAxisLabel3;
-            ...
-        }
-        private void ChartControl_CustomDrawAxisLabel3(object sender, DevExpress.XtraCharts.CustomDrawAxisLabelEventArgs e)
-        {
-            if (e.Item.Axis is AxisX)
-                e.Item.Text = ((double)e.Item.AxisValue).ToString("n0");
-        }
+private void dashboardDesigner1_DashboardItemControlCreated(object sender, DevExpress.DashboardWin.DashboardItemControlEventArgs e) {
+    ...
+    e.ChartControl.CustomDrawAxisLabel += ChartControl_CustomDrawAxisLabel3;
+    ...
+}
+private void ChartControl_CustomDrawAxisLabel3(object sender, DevExpress.XtraCharts.CustomDrawAxisLabelEventArgs e) {
+    if (e.Item.Axis is AxisX)
+        e.Item.Text = ((double)e.Item.AxisValue).ToString("n0");
+}
 ```
 
 ## Documentation
