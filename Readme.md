@@ -3,12 +3,6 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T597204)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
-
-* [Form1.cs](./CS/DesignerSample/Form1.cs) (VB: [Form1.vb](./VB/DesignerSample/Form1.vb))
-* [Program.cs](./CS/DesignerSample/Program.cs) (VB: [Program.vb](./VB/DesignerSample/Program.vb))
-<!-- default file list end -->
 
 # Dashboard for WinForms - How to use a custom format for axis labels in the Chart Item
 
@@ -19,13 +13,14 @@ However, you can still use approaches demonstrated in this example if you wish t
 
 Although our Dashboards do not provide a way to use custom formats and specify formats for axis labels in certain case, there is a way to format axis labels manually. This example illustrates how to format axis labels in a custom manner. For this access the underlying Chart Control in the [DashboardItemControlCreated](https://documentation.devexpress.com/Dashboard/DevExpress.DashboardWin.DashboardDesigner.DashboardItemControlCreated.event) event handler and handle the [CustomDrawAxisLabel](https://documentation.devexpress.com/WindowsForms/DevExpress.XtraCharts.ChartControl.CustomDrawAxisLabel.event) event to modify the axis labels' content directly.  
 
----
 **Note** that printed or exported documents containing a dashboard/dashboard item do not reflect appearance settings applied using the events for accessing of underlying controls.  
 
-See also:  
-- [Access to Underlying Controls](https://documentation.devexpress.com/Dashboard/18019/Building-the-Designer-and-Viewer-Applications/WinForms-Viewer/Access-to-Underlying-Controls) 
-- [Web Dashboards - How to use a custom format for axis labels in the Chart Item](https://www.devexpress.com/Support/Center/p/T602710)  
----
+## Files to Review
+
+* [Form1.cs](./CS/DesignerSample/Form1.cs) (VB: [Form1.vb](./VB/DesignerSample/Form1.vb))
+* [Program.cs](./CS/DesignerSample/Program.cs) (VB: [Program.vb](./VB/DesignerSample/Program.vb))
+
+## Example Overview
 
 The following three most frequently asked scenarios are represented in this example:  
 
@@ -86,3 +81,7 @@ private void dashboardDesigner1_DashboardItemControlCreated(object sender, DevEx
                 e.Item.Text = ((double)e.Item.AxisValue).ToString("n0");
         }
 ```
+
+## Documentation
+
+- [Access to Underlying Controls](https://documentation.devexpress.com/Dashboard/18019/Building-the-Designer-and-Viewer-Applications/WinForms-Viewer/Access-to-Underlying-Controls) 
